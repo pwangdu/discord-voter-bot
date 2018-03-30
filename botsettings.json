@@ -5,5 +5,5 @@
         "account": "STEEMIT_ACCOUNT-ID",
         "key": "YOUR-POSTING-WIF"
     },
-    "allowed-channel": "general"
+    "channel": "general"
 }

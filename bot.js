@@ -20,7 +20,9 @@ bot.on("message", async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
     if (!message.content.startsWith(prefix)) return;
-    if (message.channel.name !== `${botsettings.allowed-channel}`) return;
+    console.log(message.channel.name)
+    console.log(`${botsettings.channel}`)
+    if (message.channel.name !== `${botsettings.channel}`) return;
     let messageArray = message.content.split(" ");
     let command = messageArray[0];
     let args = messageArray.slice(1);
