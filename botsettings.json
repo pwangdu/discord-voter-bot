@@ -1,0 +1,8 @@
+{
+    "token": "DISCORD-BOT-TOKEN",
+    "prefix": "$",
+    "steem":{
+        "account": "STEEMIT_ACCOUNT-ID",
+        "key": "YOUR-POSTING-WIF"
+    }
+}
