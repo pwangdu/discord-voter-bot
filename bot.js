@@ -20,7 +20,7 @@ bot.on("message", async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
     if (!message.content.startsWith(prefix)) return;
-    if(message.channel.name !== '${botsettings.allowed-channel}') return;
+    if (message.channel.name !== `${botsettings.allowed-channel}`) return;
     let messageArray = message.content.split(" ");
     let command = messageArray[0];
     let args = messageArray.slice(1);
@@ -41,23 +41,23 @@ bot.on("message", async message => {
 });
 
 function upvote(author, permalink, channel, weightPercentage) {
-        steem.broadcast.voteAsync(steemAccountKey, steemAccount, author, permalink, weightPercentage, (err, result) => {
-            if (err) {
-                let embed = new Discord.RichEmbed()
-                    .setColor("RED")
-                    .setDescription("Not able to vote")
-                    .addField("Error", err)
-                channel.send(embed);
-            }
-            if (result) {
-                let embed = new Discord.RichEmbed()
-                    .setColor("GREEN")
-                    .setDescription(`Done! @${author}/${permalink} has received a ${weightPercentage / 100}% upvote from @${steemAccount}!`);
-                channel.send(embed);
-            }
-        }).catch(err => {
-            console.log(err.stack);
-        });
+    steem.broadcast.voteAsync(steemAccountKey, steemAccount, author, permalink, weightPercentage, (err, result) => {
+        if (err) {
+            let embed = new Discord.RichEmbed()
+                .setColor("RED")
+                .setDescription("Not able to vote")
+                .addField("Error", err)
+            channel.send(embed);
+        }
+        if (result) {
+            let embed = new Discord.RichEmbed()
+                .setColor("GREEN")
+                .setDescription(`Done! @${author}/${permalink} has received a ${weightPercentage / 100}% upvote from @${steemAccount}!`);
+            channel.send(embed);
+        }
+    }).catch(err => {
+        console.log(err.stack);
+    });
 }
 
 bot.login(botsettings.token);
