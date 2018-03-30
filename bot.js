@@ -26,7 +26,6 @@ bot.on("message", async message => {
     let messageArray = message.content.split(" ");
     let command = messageArray[0];
     let args = messageArray.slice(1);
-
     if (command === `${prefix}upvote`) {
         var weightPercentage = parseFloat(args[0]) * 100;
         var postAuthor = args[1].split("@")[1].split("/")[0];
@@ -63,3 +62,22 @@ function upvote(author, permalink, channel, weightPercentage) {
 }
 
 bot.login(botsettings.token);
+
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const packageInfo = require('./package.json');
+
+
+const app = express();
+app.use(bodyParser.json());
+
+app.get('/', function (req, res) {
+  res.json({ version: packageInfo.version });
+});
+
+var server = app.listen(process.env.PORT, "0.0.0.0", () => {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log('Web server started at http://%s:%s', host, port);
+});
